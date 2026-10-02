@@ -1,22 +1,32 @@
-# SPDX-FileCopyrightText: 2024-2025 Carnegie Mellon University
+# SPDX-FileCopyrightText: 2024-2026 Carnegie Mellon University
 #
 # SPDX-License-Identifier: GPL-2.0-only
 
 from __future__ import annotations
+
+from pathlib import Path
 
 import streamlit as st
 
 from hawk.gui.elements import Mission, mission_changed
 from hawk.gui.Welcome import ABOUT_TEXT, welcome_page
 
+ASSETS = Path(__file__).parent / "assets"
+
 st.set_page_config(
     page_title="Hawk Browser",
-    page_icon=":material/thumbs_up_down:",
+    page_icon=str(ASSETS / "hawk-mark.svg"),
     menu_items={
         "Report a bug": "https://github.com/cmusatyalab/hawk/issues",
         "About": ABOUT_TEXT,
     },
     layout="wide",
+)
+st.logo(
+    str(ASSETS / "hawk-logo.svg"),
+    icon_image=str(ASSETS / "hawk-mark.svg"),
+    link="https://github.com/cmusatyalab/hawk",
+    size="large",
 )
 
 
