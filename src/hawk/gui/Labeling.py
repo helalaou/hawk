@@ -9,7 +9,6 @@ import time
 from typing import TYPE_CHECKING, Iterator
 
 import streamlit as st
-from streamlit_label_kit import detection as st_detection
 
 from hawk import Detection
 from hawk.classes import ClassList, ClassName, class_label_to_int
@@ -21,6 +20,7 @@ from hawk.gui.elements import (
     mission_stats,
     paginate,
 )
+from hawk.gui.labelkit import detection as st_detection
 
 if TYPE_CHECKING:
     from blinker import Signal
@@ -315,7 +315,8 @@ def detection_ui(mission: Mission, sample: LabelSample) -> None:
         new = labeled_result is None and inprogress_bboxes is None
 
         if not new:
-            st.session_state[f"{sample.index}_fb"] = bool(sample.detections)
+            # st.feedback("thumbs") uses 0 for thumbs down, 1 for thumbs up
+            st.session_state[f"{sample.index}_fb"] = int(bool(sample.detections))
 
         feedback = st.feedback("thumbs", key=f"{sample.index}_fb")
         if new and feedback is not None:
