@@ -8,6 +8,7 @@ import sys
 from typing import TYPE_CHECKING, Iterator
 
 import streamlit as st
+from streamlit_label_kit import detection as st_detection
 
 from hawk import Detection
 from hawk.classes import ClassList, ClassName, class_label_to_int
@@ -20,7 +21,6 @@ from hawk.gui.elements import (
     page_header,
     paginate,
 )
-from hawk.gui.labelkit import detection as st_detection
 
 if TYPE_CHECKING:
     from blinker import Signal
